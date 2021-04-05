@@ -17,12 +17,11 @@
 
         </form>
         </center>
-        <?php  
-        if(isset($_POST['pub'])){
-            include("config.php");
-        
-        }
+        <?php
+        if (isset($_POST['pub'])) {
+            include "config.php";
 
+        }
         ?>
 </body>
 </html>

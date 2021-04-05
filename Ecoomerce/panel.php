@@ -26,36 +26,32 @@ if (!isset($_SESSION['usuario']) || trim($_SESSION['usuario']) === '') {
     <a class="btn btn-success" href="nueva_cat.php">Nueva Categoria +</a>
     <a class="btn btn-danger" href="logout.php">Cerrar Sesion</a>
 
-
     </div>
-    
-    
-   
-
         <table>
             <tr>
                 <td><h2>ID</h2></td>
                 <td><h2>Nombre</h2></td>
                 <td><h2>Descripcion</h2></td>
-
-
             </tr>
             <?php
-            include("config.php");
-            $ver = $conexion->query("SELECT * FROM publicaciones" );
-            if ($ver) { while ($mostrar = $ver->fetch_array()) {
-                
-            ?>
+            include 'config.php';
+            $ver = $conexion->query('SELECT * FROM publicaciones');
+            if ($ver) {
+                while ($mostrar = $ver->fetch_array()) { ?>
                 <tr>
-                <td><h4><?php echo $mostrar['id'] ?></h4></td>
-                <td><h4><?php echo $mostrar['nombre'] ?></h4></td>
-                <td><h4><?php echo $mostrar['descripcion'] ?></h4></td>
-                <td><a href="editar.php?id=<?php  echo $mostrar['id']  ?>"> Editar </a></td>
-                <td><a href="delete.php?id=<?php  echo $mostrar['id']  ?>"> Eliminar </a></td>
+                <td><h4><?php echo $mostrar['id']; ?></h4></td>
+                <td><h4><?php echo $mostrar['nombre']; ?></h4></td>
+                <td><h4><?php echo $mostrar['descripcion']; ?></h4></td>
+                <td><a href="editar.php?id=<?php echo $mostrar[
+                    'id'
+                ]; ?>"> Editar </a></td>
+                <td><a href="delete.php?id=<?php echo $mostrar[
+                    'id'
+                ]; ?>"> Eliminar </a></td>
                 </tr>
-            <?php } } ?>
-
-
+            <?php }
+            }
+            ?>
 </table>
 </body>
 </html>

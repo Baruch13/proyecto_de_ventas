@@ -1,31 +1,28 @@
 <?php
 
-require("config.php");
+require "config.php";
 
-if(isset($_GET['id'])){
-	$id = $_GET['id'];
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
 
-	$query = "SELECT * FROM publicaciones WHERE id = $id";
-	$result = mysqli_query($conexion, $query);
-	if (mysqli_num_rows($result) == 1) {
-		$row = mysqli_fetch_array($result);
-		$nombre = $row['nombre'];
-		$descripcion = $row['descripcion'];
-    //hola
-		
+    $query = "SELECT * FROM publicaciones WHERE id = $id";
+    $result = mysqli_query($conexion, $query);
+    if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_array($result);
+        $nombre = $row['nombre'];
+        $descripcion = $row['descripcion'];
+    }
 
-	}
-
-	}
+}
 if (isset($_POST['update'])) {
-  $id = $_GET['id'];
-  $nombre= $_POST['nombre'];
-  $descripcion = $_POST['descripcion'];
+    $id = $_GET['id'];
+    $nombre = $_POST['nombre'];
+    $descripcion = $_POST['descripcion'];
 
-  $query = "UPDATE publicaciones set nombre = '$nombre', descripcion = '$descripcion' WHERE id=$id";
-  mysqli_query($conexion, $query);
+    $query = "UPDATE publicaciones set nombre = '$nombre', descripcion = '$descripcion' WHERE id=$id";
+    mysqli_query($conexion, $query);
 
-  header('Location: panel.php');
+    header('Location: panel.php');
 }
 ?>
 
@@ -56,8 +53,6 @@ if (isset($_POST['update'])) {
   <center> <button class="btn btn-primary" name="update">Guardar</button>
             <a  class="btn btn-danger" href="panel.php">Cancelar</a>
   </center>
-
-
    </form>
 </body>
 </html>

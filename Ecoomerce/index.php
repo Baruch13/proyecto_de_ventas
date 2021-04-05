@@ -32,13 +32,6 @@
       <a class="nav-link" href="login.php">Iniciar Sesion</a>
     </li>
   </ul>
-
-
-
-
-
- 
-
 </div>
   <form action="result.php" method="get">
   <input name="palabra"  type="text" placeholder="Buscar...">
@@ -47,27 +40,19 @@
 </nav>
 
       <?php
-					include("config.php");
+      include 'config.php';
 
+      $ver = $conexion->query('SELECT * FROM publicaciones');
 
-						$ver = $conexion->query("SELECT * FROM publicaciones" );
+      if ($ver) {
+          while ($row = $ver->fetch_array()) {
 
-						if ($ver) {
-              //holaaaa
-
-							while ($row = $ver->fetch_array()) {
-								$id = $row['id'];
-								$nombre = $row['nombre'];
-								$descripcion = $row['descripcion'];
-								$foto = $row['foto'];
-
-
-              
-								
-					?>
-
+              $id = $row['id'];
+              $nombre = $row['nombre'];
+              $descripcion = $row['descripcion'];
+              $foto = $row['foto'];
+              ?>
                 <!-- Tarjetas -->
-
 
 <head>
 <style>
@@ -143,8 +128,10 @@ img{
 <div class="gallery">
     <img src="<?php echo $foto; ?>">
   </a>
-  <div class="desc"><h2><?php echo $row['nombre']; ?></h2> <center><button class="btn-primary">Ver</button></center></div>
-  
+  <div class="desc"><h2><?php echo $row[
+      'nombre'
+  ]; ?></h2> <center><button class="btn-primary">Ver</button></center></div>
+
 </div>
 
 
@@ -152,9 +139,8 @@ img{
 
 
         <?php
-              }
-            }
-
-?>
+          }
+      }
+      ?>
 </body>
 </html>
