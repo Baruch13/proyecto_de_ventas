@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+h2{
+    display: inline-block;
+    margin: 15px;
+    
+}
+td{
+    padding: 15px;
+}
