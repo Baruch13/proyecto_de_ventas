@@ -7,33 +7,36 @@ Otra cosa; Si vas a manejar sesiones el session_start() lo debes incluir en todo
 en la primer linea, siempre así.
 ahora lo siguiente. Te es mejor usar un id como referencia de sesión, pero está bien que uses el usuaro
 
-*/
+ */
 session_start();
-include("config.php");
+include 'config.php';
 if (isset($_POST['listo'])) {
     $usuario = $_POST['usuario'];
     $clave = $_POST['clave'];
-    $ver = $conexion->query("SELECT * FROM usuarios WHERE usuario = '$usuario' AND clave = '$clave'");
+    $ver = $conexion->query(
+        "SELECT * FROM usuarios WHERE usuario = '$usuario' AND clave = '$clave'"
+    );
     $ins = $ver->num_rows;
-    if($ins == 1){
-        $_SESSION['usuario'] = $usuario;//mira aqui bro
-        header("Location:panel.php");
+    if ($ins == 1) {
+        $_SESSION['usuario'] = $usuario; //mira aqui bro
+        header('Location:panel.php');
     } else {
-        echo "<script>";
+        echo '<script>';
         echo "alert('No Tienes Acceso')";
-        echo "</script>";
+        echo '</script>';
     }
 }
+
 //que si bro entiendo si para redirijir a otras paginas
 // Tal y cual como está acá está muy ok bro lo tengo en cuenta aveces no se googlear exactamente
 //si aveces no se como expresarme jsj ok bro las dejare graciaaaasss xddddd ok hay vot
-/* 
+/*
 esta condicion lo que hace son dos cosas
 1. la función isset() es una función para validar si algo existe, entonces lo que está haciendo
 es validar si $_SESSION['usuario'] existe (es importante saber eso porque si después hay un $_SESSION['email'] por ej, no te va a validar eso)
 2. $_SESSION['usuario'] === '' está validando si está vacio
 3. || <- esas lineas significan "o" o sea, si no existe O está vacío la variable $_SESSION['usuario'] haz lo siguiente
-*/
+ */
 
 // este trozo te va a servir para que vos valides que no existe la sesión, entonces esto lo tenes que poner en lo lugare que no queres que entre
 // a menos que se hayan logueado

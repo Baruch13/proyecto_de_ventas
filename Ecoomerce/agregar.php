@@ -1,11 +1,11 @@
 <?php
-// fijate a ver que onda  ok voy aaa ya 
+// fijate a ver que onda  ok voy aaa ya
 session_start();
 if (!isset($_SESSION['usuario']) || trim($_SESSION['usuario']) === '') {
     $usuario = $_SESSION['usuario'];
     header('location: login.php');
 }
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +36,7 @@ if (!isset($_SESSION['usuario']) || trim($_SESSION['usuario']) === '') {
 
 
     </form>
-   </center> 
+   </center>
 
    <style>
    #put{
@@ -45,24 +45,22 @@ if (!isset($_SESSION['usuario']) || trim($_SESSION['usuario']) === '') {
    }
    </style>
     <?php
-    if(isset($_POST['subir'])){
-        include("config.php");
-        $nombre = $_POST['nombre'];
-        $descripcion = $_POST['descripcion'];
-        $cat = $_POST['cat'];
-        
+if (isset($_POST['subir'])) {
+    include "config.php";
+    $nombre = $_POST['nombre'];
+    $descripcion = $_POST['descripcion'];
+    $cat = $_POST['cat'];
 
-        $foto=$_FILES["foto"]["name"];
-        $ruta=$_FILES["foto"]["tmp_name"];
-        $destino="fotos_publicaciones/".$foto; 
-        copy($ruta,$destino);
-        $insertar = $conexion->query("INSERT INTO publicaciones (nombre,foto,descripcion) VALUES ('$nombre','$destino','$descripcion')");
-        if($insertar){
-            
-        }
+    $foto = $_FILES["foto"]["name"];
+    $ruta = $_FILES["foto"]["tmp_name"];
+    $destino = "fotos_publicaciones/" . $foto;
+    copy($ruta, $destino);
+    $insertar = $conexion->query("INSERT INTO publicaciones (nombre,foto,descripcion) VALUES ('$nombre','$destino','$descripcion')");
+    if ($insertar) {
 
     }
 
+}
 
 ?>
 
